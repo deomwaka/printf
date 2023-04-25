@@ -92,14 +92,14 @@ unsigned int convert_S(va_list args, buffer_t *output,
 		{
 			ret += _memcpy(output, hex, 2);
 			if (*(str + index) < 16)
-				ret += memcpy(output, &zero, 1);
+				ret += _memcpy(output, &zero, 1);
 			ret += convert_ubase(output, *(str + index),
 					"0123456789ABCDEF", flags, 0, 0);
 			continue;
 		}
-		ret += _memcpy(out, (str + index), 1);
+		ret += _memcpy(output, (str + index), 1);
 	}
-	ret += _memcpy(output, ret, flags, wid);
+	ret += print_neg_width(output, ret, flags, wid);
 	return (ret);
 }
 /**
@@ -141,7 +141,7 @@ unsigned int convert_r(va_list args, buffer_t *output,
 		ret += _memcpy(output, (str + end), 1);
 		end--;
 	}
-	ret += print_neg_widt(output, ret, flags, wid);
+	ret += print_neg_width(output, ret, flags, wid);
 	return (ret);
 }
 /**
@@ -195,7 +195,7 @@ unsigned int convert_R(va_list args, buffer_t *output,
 		if (j == 52)
 			ret += _memcpy(output, (str + i), 1);
 	}
-	ret += _memcpy(output, ret, flags, wid);
+	ret += print_neg_width(output, ret, flags, wid);
 
 	return (ret);
 }
