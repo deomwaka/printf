@@ -5,7 +5,7 @@ unsigned char handle_length(const char *modifier, char *index);
 int handle_width(va_list args, const char *modifier, char *index);
 int handle_precision(va_list args, const char *modifier, char *index);
 unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
-		unsigned char, int int, unsigned char);
+		unsigned char, int, int, unsigned char);
 
 /**
  * handle_flags - matches flags with similar values
@@ -26,7 +26,7 @@ unsigned char handle_flags(const char *flag, char *index)
 		{'0', ZERO},
 		{'-', NEG},
 		{0, 0}
-	}
+	};
 
 	for (i = 0; flag[i]; i++)
 	{
@@ -139,7 +139,7 @@ int handle_precision(va_list args, const char *modifier, char *index)
 		return (0);
 	}
 
-	while ((*modifier >= '0' && *modfifier <= '9') ||
+	while ((*modifier >= '0' && *modifier <= '9') ||
 			(*modifier == '*'))
 	{
 		(*index)++;
@@ -171,7 +171,7 @@ int handle_precision(va_list args, const char *modifier, char *index)
 unsigned int (*handle_specifiers(const char *specifier))(va_list,
 		buffer_t *, unsigned char, int, int, unsigned char)
 {
-	int;
+	int i;
 
 	converter_t converters[] = {
 		{'c', convert_c},
