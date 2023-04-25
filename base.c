@@ -93,7 +93,7 @@ unsigned int convert_ubase(buffer_t *output,
 				ret += _memcpy(output, &pad, 1);
 		}
 
-		if (((fags >> 5) & 1) == 1)
+		if (((flags >> 5) & 1) == 1)
 			ret += _memcpy(output, lead, 2);
 	}
 
