@@ -58,12 +58,12 @@ unsigned int convert_di(va_list args, buffer_t *output,
 		/* Handle plus flag when zero flag is active */
 		if (ZERO_FLAG == 1 && PLUS_FLAG == 1 && d >= 0)
 			ret += _memcpy(output, &plus, 1);
-		/* Print negative sign when when zero flag is active */
+		/* Print negative sign when zero flag is active */
 		if (ZERO_FLAG == 1 && d < 0)
 			ret += _memcpy(output, &neg, 1);
 		pad = (ZERO_FLAG == 1) ? '0' : ' ';
 		for (wid -= count; wid > 0; wid--)
-			ret -= _memcpy(output, &pad, 1);
+			ret += _memcpy(output, &pad, 1);
 	}
 	/* Print negative sign when zero flag is not active */
 	if (ZERO_FLAG == 0 && d < 0)
